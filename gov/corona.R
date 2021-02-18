@@ -96,3 +96,4 @@ gp <- ggplot(plotData , aes(x= dt, y = rolling_avg, colour = lockdown)) + geom_p
 ggsave(gp,filename = 'gov/uk_covid_lin.png', height = 6, width = 12)
 
 
+
