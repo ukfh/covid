@@ -34,14 +34,6 @@ uk <- uk %>% mutate(dt = date, lockdown = case_when(dt <= as.Date('2020-03-22') 
 uk$lockdown <- factor(uk$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0'))
 
 
-# de <- google.long %>% filter(country_region_code == 'DE') %>% group_by(country_region_code,country_region,sub_region_1,sub_region_2,metro_area,iso_3166_2_code,census_fips_code) %>% 
-#   arrange(date) %>% mutate (oldvalue = value) %>%
-#   mutate ( value = round(rollmean(value,7, na.pad = T), digits = 1)) %>% ungroup()
-
-# sort(unique(uk$sub_region_1))
-# sort(unique(uk$sub_region_2))
-# sort(unique(de$sub_region_1))
-# sort(unique(de$sub_region_2))
 
 names <- sort(unique(uk$name))
 
