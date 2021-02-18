@@ -34,7 +34,6 @@ uk <- uk %>% mutate(dt = date, lockdown = case_when(dt <= as.Date('2020-03-22') 
 uk$lockdown <- factor(uk$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0'))
 
 
-
 names <- sort(unique(uk$name))
 
 for(n in names)
