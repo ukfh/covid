@@ -86,13 +86,13 @@ gp <- ggplot(plotData, aes(x= dt, y = rolling_avg, colour = lockdown)) + geom_po
   # facet_wrap(~key, scales = 'free') + scale_y_log10() + xlab('Time') + ylab('7 day rolling average')  + 
   facet_grid(rows=vars(key), scales = 'free') + scale_y_log10() + 
   xlab('Time') + ylab('7 day rolling average \n with daily figures as thin line')  + 
-  geom_line(aes(x=dt, y=value, color=lockdown),  lwd = 0.75) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + ggtitle(paste('Covid figures on ', max(plotData$dt), sep = '')) + theme_bw(base_size = 20)
+  geom_line(aes(x=dt, y=value, color=lockdown),  lwd = 0.75) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + ggtitle(paste('Covid figures on ', max(plotData$dt), sep = '')) + theme_bw(base_size = 18)
 ggsave(gp,filename = 'gov/uk_covid_log.png', height = 6, width = 12)
 
   
 gp <- ggplot(plotData , aes(x= dt, y = rolling_avg, colour = lockdown)) + geom_point(aes(colour = lockdown)) + geom_line(aes(colour = lockdown)) +   # facet_wrap(~key, scales = 'free') + scale_y_log10() + xlab('Time') + ylab('7 day rolling average')  + 
   facet_grid(rows=vars(key), scales = 'free')  + xlab('Time') + ylab('7 day rolling average \n with daily figures as thin line')   + 
-  geom_line(aes(x=dt, y=value, color=lockdown),  lwd = 0.75)  + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + ggtitle(paste('Covid figures on ', max(plotData$dt), sep = '')) + theme_bw(base_size = 20)
+  geom_line(aes(x=dt, y=value, color=lockdown),  lwd = 0.75)  + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + ggtitle(paste('Covid figures on ', max(plotData$dt), sep = '')) + theme_bw(base_size = 18)
 ggsave(gp,filename = 'gov/uk_covid_lin.png', height = 6, width = 12)
 
 
