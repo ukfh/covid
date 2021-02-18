@@ -81,6 +81,8 @@ corona_long$lockdown <- factor(corona_long$lockdown, levels = c("Before","1st Lo
 
 # unique(corona_long$lockdown)
 
+# the plots ----
+# 
 plotData <- corona_long %>% filter(key  %in% c("deaths","hospital_cases","new_cases" ) & dt >= as.Date('2020-10-15'))
 gp <- ggplot(plotData, aes(x= dt, y = rolling_avg, colour = lockdown)) + geom_point(aes(colour = lockdown)) + geom_line(aes(colour = lockdown)) + 
   # facet_wrap(~key, scales = 'free') + scale_y_log10() + xlab('Time') + ylab('7 day rolling average')  + 
