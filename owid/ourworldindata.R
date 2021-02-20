@@ -40,12 +40,12 @@ ggsave(file, gbrPlot, width = 12, height = 9)
 data <- data.long %>% filter(iso_code %in% c('GBR','DEU'))
   # unique(data.long$metric)
 
-raceData <- ggplot(data %>% filter(metric %in% c("new_cases_smoothed","positive_rate" ,"new_deaths_smoothed"  ,"icu_patients" )), aes(x= date, y = value, colour = iso_code)) + geom_point(aes(colour = iso_code)) + geom_line(aes(colour = iso_code)) + facet_grid(rows=vars(metric), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 20)
+raceData <- ggplot(data %>% filter(metric %in% c("new_cases_smoothed","positive_rate" ,"new_deaths_smoothed"  ,"icu_patients" )) , aes(x= date, y = value, colour = iso_code)) + geom_point(aes(colour = iso_code)) + geom_line(aes(colour = iso_code)) + facet_grid(rows=vars(metric), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 20)
 
 file <- paste('owid/gbr-de.png', sep = '')
 ggsave(file, raceData, width = 12, height = 9)  
   
-raceData <- ggplot(data %>% filter(date >= as.Date('2020-12-15') & metric %in% c('people_fully_vaccinated',"total_vaccinations" )), aes(x= date, y = value, colour = iso_code)) + geom_point(aes(colour = iso_code)) + geom_line(aes(colour = iso_code)) + facet_grid(rows=vars(metric), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 20)
+raceData <- ggplot(data %>% filter(date >= as.Date('2020-12-15') & metric %in% c('people_fully_vaccinated',"total_vaccinations" )), aes(x= date, y = value, colour = iso_code)) + geom_point(aes(colour = iso_code)) + geom_line(aes(colour = iso_code)) + facet_grid(rows=vars(metric), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 20) + ggtitle(paste("Vaccinations ending ",max(data$date), sep = ''))
 
 file <- paste('owid/vaccine_race.png', sep = '')
 ggsave(file, raceData, width = 12, height = 9)  
