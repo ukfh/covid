@@ -2,7 +2,8 @@ library(tidyverse)
 
 # get the OWID data
 url <- 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
-  
+options(bitmapType='cairo')
+
 data.org <- read.csv(url, header = T, stringsAsFactors = F)
 
 # save data ----
