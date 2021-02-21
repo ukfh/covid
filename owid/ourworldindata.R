@@ -76,7 +76,7 @@ niceNames <- data.frame(metric = metric, niceName = niceName, stringsAsFactors =
 plotData <- merge(plotData, niceNames, by = 'metric')
 
 countryData <- ggplot(plotData, aes(x= date, y = value, colour = iso_code)) + geom_point(aes(colour = iso_code)) + geom_line(aes(colour = iso_code)) + facet_grid(rows=vars(niceName), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 20) + 
-  ggtitle(paste("Comparing vaccinations in", paste(unique(plotData$iso_code), collapse = " "), " data ending ", max(plotData$date), sep = ""))
+  ggtitle(paste("Comparing vaccinations in ", paste(unique(plotData$iso_code), collapse = " "), " data ending ", max(plotData$date), sep = ""))
   
 
 file <- paste('owid/vaccine_race.png', sep = '')

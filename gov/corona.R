@@ -2,6 +2,7 @@ library(httr)
 library(jsonlite)
 library(tidyverse)
 library(tidyquant)
+options(bitmapType='cairo')
 
 # get data -------
 
