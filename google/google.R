@@ -52,7 +52,10 @@ uk <- merge(uk, niceNames, by = 'name')
 
 
 file <- paste("google/movement_uk.png", sep = '')
-gp <- ggplot(uk , aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + geom_line(aes(colour=lockdown)) + facet_grid(rows = vars(niceName), scales = 'free') + ggtitle(paste("Google movement data ending ", max(uk$date), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
+gp <- ggplot(uk , aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + 
+  geom_line(aes(colour=lockdown)) + facet_grid(rows = vars(niceName), scales = 'free') + 
+  ggtitle(paste("Google movement data for the UK ending ", max(uk$date), sep = '')) + 
+  scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
   theme_bw(base_size = 15) + ylab("Percent change from baseline")
  ggsave(file, gp, width = 12, height = 9)
 
@@ -86,7 +89,8 @@ gp <- ggplot(uk , aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + g
  file <- paste("google/movement_uk_de.png", sep = '')
  gp <- ggplot(plotData , aes(x=date, y = value)) + geom_point(aes(colour=country_region_code)) + geom_line(aes(colour=country_region_code)) + 
    facet_grid(rows = vars(niceName), scales = 'free') + 
-   ggtitle(paste("Google movement data ending ", max(uk$date), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
+   ggtitle(paste("Google movement data for Germany and the UK ending ", max(uk$date), sep = '')) + 
+   scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
    theme_bw(base_size = 15) + ylab("Percent change from baseline")
  ggsave(file, gp, width = 12, height = 9)
  

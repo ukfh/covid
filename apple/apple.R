@@ -1,5 +1,6 @@
 # data downloaded from:
 # https://www.apple.com/covid19/mobility
+# https://covid19-static.cdn-apple.com/covid19-mobility-data/2102HotfixDev9/v3/en-us/applemobilitytrends-2021-02-20.csv
 
 library(tidyverse)
 library(tidyquant)
