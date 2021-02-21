@@ -3,10 +3,14 @@ library(tidyquant)
 
 google.org <- read.csv('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', header = T, stringsAsFactors = F)
 # save data ----
-write.csv(data.org, file = paste('google/', Sys.Date(), '_Global_Mobility_Report.csv', sep = ''))
+write.csv(google.org, file = paste('google/', Sys.Date(), '_Global_Mobility_Report.csv', sep = ''))
 google.org <- google.org %>% mutate(date = as.Date(date)) # , dow = weekdays(date)
 # google.org <- google.org %>% select(-dow)
 google.long <- google.org %>% pivot_longer(retail_and_recreation_percent_change_from_baseline:residential_percent_change_from_baseline)
+
+#unique(google.long$country_region_code)
+
+plotData <- google.long %>% filter( country_region_code == 'GB' & sub_region_1 =='')
 
 # google.long.smooth <- google.long %>% group_by(country_region_code,country_region,sub_region_1,sub_region_2,metro_area,iso_3166_2_code,census_fips_code) %>% 
 #   arrange(date) %>% mutate (oldvalue = value) %>%
@@ -14,10 +18,12 @@ google.long <- google.org %>% pivot_longer(retail_and_recreation_percent_change_
 # 
 # 
 # unique(google.org$country_region_code)
-
-uk <- google.long %>% filter(country_region_code == 'GB') %>% select (-census_fips_code,-metro_area,-iso_3166_2_code, -sub_region_2, -country_region,-country_region_code) %>%
-  filter(sub_region_1 %in% c('Reading', 'West Berkshire',"County Durham","Nottingham")) %>% group_by(sub_region_1,name) %>%   
-  arrange(date) %>% mutate (oldvalue = value) %>% mutate ( value = round(rollmean(value,5, na.pad = T), digits = 1)) %>% ungroup()
+# ,"County Durham","Nottingham"
+uk <- plotData %>% filter(country_region_code == 'GB') %>% 
+  select (-census_fips_code,-metro_area,-iso_3166_2_code, -sub_region_2, -country_region,-country_region_code, -sub_region_1) %>%
+#  filter(sub_region_1 %in% c('Reading', 'West Berkshire')) %>% 
+group_by(name) %>%   
+  arrange(date) %>% mutate (oldvalue = value) %>% mutate ( value = round(rollmean(value,7, na.pad = T), digits = 1)) %>% ungroup()
 
 # label the dates (Reading specific)
 uk <- uk %>% mutate(dt = date, lockdown = case_when(dt <= as.Date('2020-03-22') ~ 'Before',
@@ -34,13 +40,40 @@ uk <- uk %>% mutate(dt = date, lockdown = case_when(dt <= as.Date('2020-03-22') 
 uk$lockdown <- factor(uk$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0'))
 
 
-names <- sort(unique(uk$name))
+# order the plots 
 
-for(n in names)
-{
-  file <- paste("google/",n,".png", sep = '')
-  gp <- ggplot(uk %>% filter(name == n), aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + facet_grid(rows = vars(sub_region_1)) + ggtitle(paste(n, " ending ", max(uk$date), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y")
-  ggsave(file, gp, width = 12, height = 9)
-}
+niceName  <- factor(c("Retail and \n Recreation","Grocery and \n Pharmacy" ,
+                    "Parks","Transit","Workplace","Residential" ),
+                  levels = c("Retail and \n Recreation","Grocery and \n Pharmacy" ,
+                             "Parks","Transit","Workplace","Residential"  ))
+
+name  <- factor(c("retail_and_recreation_percent_change_from_baseline","grocery_and_pharmacy_percent_change_from_baseline" ,
+                    "parks_percent_change_from_baseline","transit_stations_percent_change_from_baseline",
+                    "workplaces_percent_change_from_baseline","residential_percent_change_from_baseline" ),
+                  levels = c("retail_and_recreation_percent_change_from_baseline","grocery_and_pharmacy_percent_change_from_baseline" 
+                             ,"parks_percent_change_from_baseline","transit_stations_percent_change_from_baseline",
+                             "workplaces_percent_change_from_baseline","residential_percent_change_from_baseline" ))
+niceNames <- data.frame(name = name, niceName = niceName, stringsAsFactors = T)
+uk <- merge(uk, niceNames, by = 'name')
+
+
+# "retail_and_recreation_percent_change_from_baseline","grocery_and_pharmacy_percent_change_from_baseline" ,"parks_percent_change_from_baseline",
+# "transit_stations_percent_change_from_baseline","workplaces_percent_change_from_baseline","residential_percent_change_from_baseline"   
+
+
+file <- paste("google/movement_uk.png", sep = '')
+gp <- ggplot(uk , aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + facet_grid(rows = vars(niceName)) + ggtitle(paste("Google data ending ", max(uk$date), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) 
+ ggsave(file, gp, width = 12, height = 9)
+
+ 
+
+# names <- sort(unique(uk$name))
+
+# for(n in names)
+# {
+#   file <- paste("google/",n,".png", sep = '')
+#   gp <- ggplot(uk %>% filter(name == n), aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + facet_grid(rows = vars(sub_region_1)) + ggtitle(paste(n, " ending ", max(uk$date), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y")
+#   ggsave(file, gp, width = 12, height = 9)
+# }
 
 
