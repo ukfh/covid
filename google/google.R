@@ -8,22 +8,16 @@ google.org <- google.org %>% mutate(date = as.Date(date)) # , dow = weekdays(dat
 # google.org <- google.org %>% select(-dow)
 google.long <- google.org %>% pivot_longer(retail_and_recreation_percent_change_from_baseline:residential_percent_change_from_baseline)
 
-#unique(google.long$country_region_code)
-
+# fish out the UK wide data
 plotData <- google.long %>% filter( country_region_code == 'GB' & sub_region_1 =='')
 
-# google.long.smooth <- google.long %>% group_by(country_region_code,country_region,sub_region_1,sub_region_2,metro_area,iso_3166_2_code,census_fips_code) %>% 
-#   arrange(date) %>% mutate (oldvalue = value) %>%
-#   mutate ( value = round(rollmean(value,7, na.pad = T), digits = 1)) %>% ungroup()
-# 
-# 
-# unique(google.org$country_region_code)
-# ,"County Durham","Nottingham"
+
 uk <- plotData %>% filter(country_region_code == 'GB') %>% 
   select (-census_fips_code,-metro_area,-iso_3166_2_code, -sub_region_2, -country_region,-country_region_code, -sub_region_1) %>%
 #  filter(sub_region_1 %in% c('Reading', 'West Berkshire')) %>% 
-group_by(name) %>%   
-  arrange(date) %>% mutate (oldvalue = value) %>% mutate ( value = round(rollmean(value,7, na.pad = T), digits = 1)) %>% ungroup()
+  group_by(name) %>% arrange(date) %>% mutate (oldvalue = value) %>% 
+  mutate ( value = round(rollmean(value,7, na.pad = T), digits = 1)) %>% 
+  ungroup()
 
 # label the dates (Reading specific)
 uk <- uk %>% mutate(dt = date, lockdown = case_when(dt <= as.Date('2020-03-22') ~ 'Before',
@@ -57,12 +51,9 @@ niceNames <- data.frame(name = name, niceName = niceName, stringsAsFactors = T)
 uk <- merge(uk, niceNames, by = 'name')
 
 
-# "retail_and_recreation_percent_change_from_baseline","grocery_and_pharmacy_percent_change_from_baseline" ,"parks_percent_change_from_baseline",
-# "transit_stations_percent_change_from_baseline","workplaces_percent_change_from_baseline","residential_percent_change_from_baseline"   
-
 
 file <- paste("google/movement_uk.png", sep = '')
-gp <- ggplot(uk , aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + facet_grid(rows = vars(niceName)) + ggtitle(paste("Google data ending ", max(uk$date), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) 
+gp <- ggplot(uk , aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + facet_grid(rows = vars(niceName), scales = 'free') + ggtitle(paste("Google data ending ", max(uk$date), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) + ylab("Percent change from baseline")
  ggsave(file, gp, width = 12, height = 9)
 
  
