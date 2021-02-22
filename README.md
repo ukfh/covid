@@ -2,5 +2,6 @@
 
 Various scripts to plot COVID numbers.
 
-![Alt text](blob/main/owid/gbr-de.png?raw=true "Title")
+![Alt text](owid/gbr-de.png?raw=true "Title")
 
+![Screenshot](gbr-de.png)
