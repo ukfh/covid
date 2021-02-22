@@ -3,6 +3,7 @@
 DIR=/home/uh/R/covid
 DATE=`date`
 
+cd $DIR
 /usr/local/bin/Rscript google/google.R 
 
 git add google/move*.png

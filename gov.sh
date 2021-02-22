@@ -3,6 +3,7 @@
 DIR=/home/uh/R/covid
 DATE=`date`
 
+cd $DIR
 /usr/local/bin/Rscript gov/corona.R 
 
 git add gov/uk_covid_l*
