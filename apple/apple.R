@@ -5,7 +5,7 @@
 library(tidyverse)
 library(tidyquant)
 
-data <- read.csv('apple/applemobilitytrends-2021-02-21.csv', header = T, stringsAsFactors = F)
+data <- read.csv('apple/applemobilitytrends-2021-02-22.csv', header = T, stringsAsFactors = F)
 
 # turn this into a sane data format
 data <- data %>% pivot_longer(-(geo_type:country))
