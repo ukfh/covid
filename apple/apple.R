@@ -5,14 +5,14 @@
 library(tidyverse)
 library(tidyquant)
 
-data <- read.csv('apple/applemobilitytrends-2021-02-24.csv', header = T, stringsAsFactors = F)
+data <- read.csv('apple/applemobilitytrends-2021-03-01.csv', header = T, stringsAsFactors = F)
 
 # turn this into a sane data format
 data <- data %>% pivot_longer(-(geo_type:country))
 
 # refromat the date
 data <- data %>% mutate(dt = as.Date(name, "X%Y.%m.%d"), dow = weekdays(dt)) %>% select(-name) %>% as.data.frame()
-str(data)
+#str(data)
 # data <- data %>% filter(dt >= as.Date('2020-10-01'))
 #View(unique(data$region))
 #unique(data$alternative_name)
