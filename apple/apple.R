@@ -4,6 +4,7 @@
 
 library(tidyverse)
 library(tidyquant)
+source('common.R')
 
 data <- read.csv('apple/applemobilitytrends-2021-03-03.csv', header = T, stringsAsFactors = F)
 
@@ -25,20 +26,21 @@ data.uk.smooth <- data.uk %>% group_by(region,transportation_type) %>%
   mutate ( value = round(rollmean(value,7, na.pad = T), digits = 1)) %>% ungroup()
 
 
+data.uk.smooth <- add_lockdown(data.uk.smooth)
 
-# label the dates (Reading specific)
-data.uk.smooth <- data.uk.smooth %>% mutate(lockdown = case_when(dt <= as.Date('2020-03-22') ~ 'Before',
-                                                           dt >= as.Date('2020-03-23') & dt <= as.Date('2020-07-04') ~ '1st Lockdown',
-                                                           dt >= as.Date('2020-07-05') & dt <= as.Date('2020-11-03') ~ 'New normal',
-                                                           dt >= as.Date('2020-11-04') & dt <= as.Date('2020-12-01') ~ 'Lockdown 2.0',
-                                                           dt >= as.Date('2020-12-02') & dt <= as.Date('2020-12-18') ~ 'Newer normal',
-                                                           dt >= as.Date('2020-12-19') & dt <= as.Date('2020-12-19') ~ 'Tier 3',
-                                                           dt >= as.Date('2020-12-20') & dt <= as.Date('2020-12-24') ~ 'Tier 4 part 1',
-                                                           dt >= as.Date('2020-12-25') & dt <= as.Date('2020-12-25') ~ 'X-mas bauble',
-                                                           dt >= as.Date('2020-12-26') & dt <= as.Date('2021-01-04') ~ 'Tier 4 part 2',
-                                                           dt >= as.Date('2021-01-05')  ~ 'Lockdown 3.0'))
-
-data.uk.smooth$lockdown <- factor(data.uk.smooth$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0'))
+# # label the dates (Reading specific)
+# data.uk.smooth <- data.uk.smooth %>% mutate(lockdown = case_when(dt <= as.Date('2020-03-22') ~ 'Before',
+#                                                            dt >= as.Date('2020-03-23') & dt <= as.Date('2020-07-04') ~ '1st Lockdown',
+#                                                            dt >= as.Date('2020-07-05') & dt <= as.Date('2020-11-03') ~ 'New normal',
+#                                                            dt >= as.Date('2020-11-04') & dt <= as.Date('2020-12-01') ~ 'Lockdown 2.0',
+#                                                            dt >= as.Date('2020-12-02') & dt <= as.Date('2020-12-18') ~ 'Newer normal',
+#                                                            dt >= as.Date('2020-12-19') & dt <= as.Date('2020-12-19') ~ 'Tier 3',
+#                                                            dt >= as.Date('2020-12-20') & dt <= as.Date('2020-12-24') ~ 'Tier 4 part 1',
+#                                                            dt >= as.Date('2020-12-25') & dt <= as.Date('2020-12-25') ~ 'X-mas bauble',
+#                                                            dt >= as.Date('2020-12-26') & dt <= as.Date('2021-01-04') ~ 'Tier 4 part 2',
+#                                                            dt >= as.Date('2021-01-05')  ~ 'Lockdown 3.0'))
+# 
+# data.uk.smooth$lockdown <- factor(data.uk.smooth$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0'))
 
 
 file <- paste('apple/uk.png', sep = '')

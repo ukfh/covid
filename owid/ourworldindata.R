@@ -1,5 +1,5 @@
 library(tidyverse)
-
+source('common.R')
 # get the OWID data
 url <- 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 options(bitmapType='cairo')
@@ -16,19 +16,21 @@ data.long <- data.org %>% gather(key = metric, value, -(1:4)) %>% mutate(date = 
 gbr <- data.long %>% filter(iso_code == 'GBR')
 # unique(data.long$metric)
 
-gbr <- gbr %>% mutate(dt = date, 
-                      lockdown = case_when(dt <= as.Date('2020-03-22') ~ 'Before',
-                                           dt >= as.Date('2020-03-23') & dt <= as.Date('2020-07-04') ~ '1st Lockdown',
-                                           dt >= as.Date('2020-07-05') & dt <= as.Date('2020-11-03') ~ 'New normal',
-                                           dt >= as.Date('2020-11-04') & dt <= as.Date('2020-12-01') ~ 'Lockdown 2.0',
-                                           dt >= as.Date('2020-12-02') & dt <= as.Date('2020-12-18') ~ 'Newer normal',
-                                           dt >= as.Date('2020-12-19') & dt <= as.Date('2020-12-19') ~ 'Tier 3',
-                                           dt >= as.Date('2020-12-20') & dt <= as.Date('2020-12-24') ~ 'Tier 4 part 1',
-                                           dt >= as.Date('2020-12-25') & dt <= as.Date('2020-12-25') ~ 'X-mas bauble',
-                                           dt >= as.Date('2020-12-26') & dt <= as.Date('2021-01-04') ~ 'Tier 4 part 2',
-                                           dt >= as.Date('2021-01-05')  ~ 'Lockdown 3.0'))
+gbr <- add_lockdown(gbr)
 
-gbr$lockdown <- factor(gbr$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0'))
+# gbr <- gbr %>% mutate(dt = date, 
+#                       lockdown = case_when(dt <= as.Date('2020-03-22') ~ 'Before',
+#                                            dt >= as.Date('2020-03-23') & dt <= as.Date('2020-07-04') ~ '1st Lockdown',
+#                                            dt >= as.Date('2020-07-05') & dt <= as.Date('2020-11-03') ~ 'New normal',
+#                                            dt >= as.Date('2020-11-04') & dt <= as.Date('2020-12-01') ~ 'Lockdown 2.0',
+#                                            dt >= as.Date('2020-12-02') & dt <= as.Date('2020-12-18') ~ 'Newer normal',
+#                                            dt >= as.Date('2020-12-19') & dt <= as.Date('2020-12-19') ~ 'Tier 3',
+#                                            dt >= as.Date('2020-12-20') & dt <= as.Date('2020-12-24') ~ 'Tier 4 part 1',
+#                                            dt >= as.Date('2020-12-25') & dt <= as.Date('2020-12-25') ~ 'X-mas bauble',
+#                                            dt >= as.Date('2020-12-26') & dt <= as.Date('2021-01-04') ~ 'Tier 4 part 2',
+#                                            dt >= as.Date('2021-01-05')  ~ 'Lockdown 3.0'))
+# 
+# gbr$lockdown <- factor(gbr$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0'))
 
   
 # gbr plot -----
