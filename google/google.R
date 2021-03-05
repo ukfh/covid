@@ -4,6 +4,7 @@ options(bitmapType='cairo')
 source('common.R')
 
 google.org <- read.csv('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', header = T, stringsAsFactors = F)
+#google.org <- read.csv('google/2021-02-22_Global_Mobility_Report.csv',header = T, stringsAsFactors = F)
 # save data ----
 write.csv(google.org, file = paste('google/', Sys.Date(), '_Global_Mobility_Report.csv', sep = ''))
 #google.org <- read.csv('google/2021-02-22_Global_Mobility_Report.csv', header = T, stringsAsFactors = F)
@@ -20,6 +21,7 @@ uk <- plotData %>%  select (-census_fips_code,-metro_area,-iso_3166_2_code, -sub
   group_by(name) %>% arrange(date) %>% mutate (oldvalue = value) %>% 
   mutate ( value = round(rollmean(value,7, na.pad = T), digits = 1)) %>% 
   ungroup()
+uk <- uk %>% mutate(dt = date)
 
 # label the dates (Reading specific)
 uk <- add_lockdown(uk)
@@ -56,7 +58,7 @@ uk <- merge(uk, niceNames, by = 'name')
 
 
 file <- paste("google/movement_uk.png", sep = '')
-gp <- ggplot(uk , aes(x=date, y = value)) + geom_point(aes(colour=lockdown)) + 
+gp <- ggplot(uk , aes(x=dt, y = value)) + geom_point(aes(colour=lockdown)) + 
   geom_line(aes(colour=lockdown)) + facet_grid(rows = vars(niceName), scales = 'free') + 
   ggtitle(paste("Google movement data for the UK ending ", max(uk$date), sep = '')) + 
   scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
