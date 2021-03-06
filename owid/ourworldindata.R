@@ -10,7 +10,7 @@ data.org <- read.csv(url, header = T, stringsAsFactors = F)
 write.csv(data.org, file = paste('owid/', Sys.Date(), '_owid-covid-data.csv', sep = ''))
 
 # tidy the data
-data.long <- data.org %>% gather(key = metric, value, -(1:4)) %>% mutate(date = as.Date(date), value = as.numeric(value))
+data.long <- data.org %>% gather(key = metric, value, -(1:4)) %>% mutate(date = as.Date(date), dt= as.Date(date), value = as.numeric(value))
 
 # look at he UK first
 gbr <- data.long %>% filter(iso_code == 'GBR')
