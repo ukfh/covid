@@ -13,12 +13,12 @@ add_lockdown <- function(data.df)
                                                      dt >= as.Date('2020-12-20') & dt <= as.Date('2020-12-24')  ~ 'Tier 4 part 1',
                                                      dt >= as.Date('2020-12-25') & dt <= as.Date('2020-12-25')  ~ 'X-mas bauble',
                                                      dt >= as.Date('2020-12-26') & dt <= as.Date('2021-01-04')  ~ 'Tier 4 part 2',
-                                                     dt >= as.Date('2021-01-05') & dt <= as.date('2021-03-07')  ~ 'Lockdown 3.0',
-                                                     dt >= as.Date('2021-03-08') & dt <= as.date('2021-03-28')  ~ 'Step 1 pt.1',
-                                                     dt >= as.Date('2021-03-29') & dt <= as.date('2021-04-11')  ~ 'Step 1 pt.2',
-                                                     dt >= as.Date('2021-04-12') & dt <= as.date('2021-05-16')  ~ 'Step 2',
-                                                     dt >= as.Date('2021-05-17') & dt <= as.date('2021-06-20')  ~ 'Step 3',
-                                                     dt >= as.date('2021-06-21')                                ~ 'End of the Pandemic'))
+                                                     dt >= as.Date('2021-01-05') & dt <= as.Date('2021-03-07')  ~ 'Lockdown 3.0',
+                                                     dt >= as.Date('2021-03-08') & dt <= as.Date('2021-03-28')  ~ 'Step 1 pt.1',
+                                                     dt >= as.Date('2021-03-29') & dt <= as.Date('2021-04-11')  ~ 'Step 1 pt.2',
+                                                     dt >= as.Date('2021-04-12') & dt <= as.Date('2021-05-16')  ~ 'Step 2',
+                                                     dt >= as.Date('2021-05-17') & dt <= as.Date('2021-06-20')  ~ 'Step 3',
+                                                     dt >= as.Date('2021-06-21')                                ~ 'End of the Pandemic'))
   
                                
   
