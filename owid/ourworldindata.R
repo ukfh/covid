@@ -53,8 +53,8 @@ ggsave(file, gbrPlot, width = 12, height = 9)
 
 plotData <- data.long %>% filter(iso_code %in% c('GBR','DEU')) %>% filter(metric %in% c("new_cases","new_cases_smoothed","positive_rate" ,"new_deaths_smoothed"  ,"icu_patients" ,"new_cases_smoothed_per_million"))
 # order the plots 
-niceName <- factor(c("New cases","New cases \n smoothed", "New cases \n smoothed per 10^6","ICU patients" ,"New deaths \n smoothed" ,"Positive rate"  ),
-                   levels =c("New cases","New cases \n smoothed", "New cases \n smoothed per 10^6","ICU patients" ,"New deaths \n smoothed" ,"Positive rate"  ))
+niceName <- factor(c("New cases","New cases \n smoothed", "New cases \n smoothed per \n million","ICU patients" ,"New deaths \n smoothed" ,"Positive rate"  ),
+                   levels =c("New cases","New cases \n smoothed", "New cases \n smoothed per \n million","ICU patients" ,"New deaths \n smoothed" ,"Positive rate"  ))
 metric  <- factor(c("new_cases","new_cases_smoothed", "new_cases_smoothed_per_million","icu_patients" ,"new_deaths_smoothed","positive_rate" ),
                   levels = c("new_cases","new_cases_smoothed","new_cases_smoothed_per_million","icu_patients" ,"new_deaths_smoothed","positive_rate" ))
 niceNames <- data.frame(metric = metric, niceName = niceName, stringsAsFactors = T)
