@@ -10,7 +10,7 @@ The data originates from the [Our World in Data](https://covid.ourworldindata.or
 ![The vaccine race between the UK and Germany](owid/vaccine_race.png?raw=true "The vaccine race between the UK and Germany")
 
 ## UK government
-Data from the [UK Government](https://coronavirus.data.gov.uk/details/developers-guide). The fatter line is the 7 day moving average and the thinner line ar the actualy daily values.
+Data from the [UK Government](https://coronavirus.data.gov.uk/details/developers-guide). The fatter line is the 7 day moving average and the thinner line are the actualy daily values. The data is plotted with a linear and a logarithimc y-axis.
 
 ![UK linear plot](gov/uk_covid_lin.png?raw=true "UK linear plot")
 ![UK logarithmic plot](gov/uk_covid_log.png?raw=true "UK logarithmic plot")
