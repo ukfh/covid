@@ -15,17 +15,17 @@ Data from the [UK Government](https://coronavirus.data.gov.uk/details/developers
 ![UK linear plot](gov/uk_covid_lin.png?raw=true "Title")
 ![UK logarithmic plot](gov/uk_covid_log.png?raw=true "Title")
 
-## Google movement data
+## Google Mobilty data
 Data provided by [Google](https://www.google.com/covid19/mobility/)
 
 ![Mobililty UK](google/movement_uk.png?raw=true "Title")
 ![Mobility UK and Germany](google/movement_uk_de.png?raw=true "Title")
 
-## Apple Movement data
+## Apple Mobility data
 Data from [Apple](https://covid19.apple.com/mobility)
 
-![Alt text](apple/uk.png?raw=true "Title")
-![Alt text](apple/uk_de.png?raw=true "Title")
+![Mobility UK](apple/uk.png?raw=true "Mobility UK")
+![Mobility UK and Germany](apple/uk_de.png?raw=true "Mobility UK and Germany")
 
 
 
