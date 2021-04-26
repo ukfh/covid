@@ -10,19 +10,19 @@ The data originates from the [Our World in Data](https://covid.ourworldindata.or
 ![The vaccine race between the UK and Germany](owid/vaccine_race.png?raw=true "The vaccine race between the UK and Germany")
 
 ## UK government
-Data from the [UK Government](https://coronavirus.data.gov.uk/details/developers-guide)
+Data from the [UK Government](https://coronavirus.data.gov.uk/details/developers-guide). The fatter line is the 7 day moving average and the thinner line ar the actualy daily values.
 
 ![UK linear plot](gov/uk_covid_lin.png?raw=true "UK linear plot")
 ![UK logarithmic plot](gov/uk_covid_log.png?raw=true "UK logarithmic plot")
 
 ## Google Mobilty data
-Data provided by [Google](https://www.google.com/covid19/mobility/)
+Data provided by [Google](https://www.google.com/covid19/mobility/). This is a 7 day rolling average.
 
 ![Mobililty UK](google/movement_uk.png?raw=true "Mobility UK")
 ![Mobility UK and Germany](google/movement_uk_de.png?raw=true "Mobility UK and Germany")
 
 ## Apple Mobility data
-Data from [Apple](https://covid19.apple.com/mobility)
+Data from [Apple](https://covid19.apple.com/mobility). This is again a 7 day rolling average. The missing data is caused by missing raw data that upsets the rolling average. 
 
 ![Mobility UK](apple/uk.png?raw=true "Mobility UK")
 ![Mobility UK and Germany](apple/uk_de.png?raw=true "Mobility UK and Germany")
