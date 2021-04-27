@@ -3,7 +3,7 @@
 Various scripts to plot COVID numbers.
 
 ## Our World in Data
-The data originates from the [Our World in Data](https://covid.ourworldindata.org/data/owid-covid-data.csv).
+The [data](https://covid.ourworldindata.org/data/owid-covid-data.csv) originates from the [Our World in Data](https://covid.ourworldindata.org/).
 
 ![The UK](owid/gbr.png?raw=true "The UK")
 ![The UK compared to Germany](owid/gbr-de.png?raw=true "The UK compared to Germany")
