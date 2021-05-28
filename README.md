@@ -9,6 +9,9 @@ The [data](https://covid.ourworldindata.org/data/owid-covid-data.csv) originates
 ![The UK compared to Germany](owid/gbr-de.png?raw=true "The UK compared to Germany")
 ![The vaccine race between the UK and Germany](owid/vaccine_race.png?raw=true "The vaccine race between the UK and Germany")
 
+It's also interesting to look at the numbers for the UK with logarithmic y-axis. Periods which can be approximated by lines indicate exponential growth or decline.
+![The UK](owid/gbr_log.png?raw=true "The UK")
+
 ## UK government
 Data from the [UK Government](https://coronavirus.data.gov.uk/details/developers-guide). The fatter line is the 7 day moving average and the thinner line are the actualy daily values. The data is plotted with a linear and a logarithimc y-axis.
 
