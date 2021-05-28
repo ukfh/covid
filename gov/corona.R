@@ -86,7 +86,7 @@ corona_long <- add_lockdown(corona_long)
 
 # the plots ----
 # 
-plotData <- corona_long %>% filter(key  %in% c("deaths","hospital_cases","new_cases" ) & dt >= as.Date('2020-10-15'))
+plotData <- corona_long %>% filter(key  %in% c("deaths","hospital_cases","new_cases" ) & dt >= Sys.Date() - 12 * 7 ) #as.Date('2020-04-01'))
 
 # order the plot
 niceName <- factor(c("New cases","Hospital cases","Deaths"),
@@ -99,8 +99,9 @@ gp <- ggplot(plotData, aes(x= dt, y = rolling_avg, colour = lockdown)) + geom_po
   # facet_wrap(~key, scales = 'free') + scale_y_log10() + xlab('Time') + ylab('7 day rolling average')  + 
   facet_grid(rows=vars(niceName), scales = 'free') + scale_y_log10() + 
   xlab('Time') + ylab('7 day rolling average \n with daily figures as thin line')  + 
-  geom_line(aes(x=dt, y=value, color=lockdown),  lwd = 0.75) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
-  ggtitle(paste('UK Covid figures on ', max(plotData$dt), sep = '')) + theme_bw(base_size = 18)
+  geom_line(aes(x=dt, y=value, color=lockdown),  lwd = 0.75) + scale_x_date(date_breaks = "months" , date_labels = "%m-%y") + 
+  ggtitle(paste('UK Covid figures on ', max(plotData$dt), sep = '')) + theme_bw(base_size = 18) +
+  theme(axis.text.x=element_text(angle=60, hjust=1))
 ggsave(gp,filename = 'gov/uk_covid_log.png', height = 6, width = 12)
 
   
