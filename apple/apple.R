@@ -6,12 +6,12 @@ library(tidyverse)
 library(tidyquant)
 source('common.R')
 
-data <- read.csv('apple/applemobilitytrends-2021-05-16.csv', header = T, stringsAsFactors = F)
+data <- read.csv('apple/applemobilitytrends-2021-05-28.csv', header = T, stringsAsFactors = F)
 
 # turn this into a sane data format
 data <- data %>% pivot_longer(-(geo_type:country))
 
-# refromat the date
+# reformat the date
 data <- data %>% mutate(dt = as.Date(name, "X%Y.%m.%d"), dow = weekdays(dt)) %>% select(-name) %>% as.data.frame()
 #str(data)
 # data <- data %>% filter(dt >= as.Date('2020-10-01'))
