@@ -62,8 +62,8 @@ gp <- ggplot(uk , aes(x=dt, y = value)) + geom_point(aes(colour=lockdown)) +
   geom_line(aes(colour=lockdown)) + facet_grid(rows = vars(niceName), scales = 'free') + 
   ggtitle(paste("Google movement data for the UK ending ", max(uk$date), sep = '')) + 
   scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
-  theme_bw(base_size = 15) + ylab("Percent change from baseline")
- ggsave(file, gp, width = 12, height = 9)
+  theme_bw(base_size = 15) + ylab("Percent change from baseline") +  theme(axis.text.x=element_text(angle=60, hjust=1))
+ ggsave(file, gp, width = 12, height = 9) 
 
  
 # compare UK and Germany
@@ -97,7 +97,7 @@ gp <- ggplot(uk , aes(x=dt, y = value)) + geom_point(aes(colour=lockdown)) +
    facet_grid(rows = vars(niceName), scales = 'free') + 
    ggtitle(paste("Google movement data for Germany and the UK ending ", max(uk$date), sep = '')) + 
    scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + 
-   theme_bw(base_size = 15) + ylab("Percent change from baseline")
+   theme_bw(base_size = 15) + ylab("Percent change from baseline") +  theme(axis.text.x=element_text(angle=60, hjust=1))
  ggsave(file, gp, width = 12, height = 9)
  
  

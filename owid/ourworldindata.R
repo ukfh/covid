@@ -31,7 +31,7 @@ metric  <- factor(c("new_cases","new_cases_smoothed","icu_patients" ,"new_deaths
 niceNames <- data.frame(metric = metric, niceName = niceName, stringsAsFactors = T)
 plotData <- merge(plotData, niceNames, by = 'metric')
 gbrPlot <-  ggplot(plotData, aes(x= date, y = value)) + 
-  geom_point(aes(colour=lockdown)) + geom_line() + facet_grid(rows=vars(niceName), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) + ggtitle(paste("GBR data ending ", max(plotData$date), sep = ""))
+  geom_point(aes(colour=lockdown)) + geom_line() + facet_grid(rows=vars(niceName), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) + ggtitle(paste("GBR data ending ", max(plotData$date), sep = "")) +  theme(axis.text.x=element_text(angle=60, hjust=1))
 
 ggsave(file, gbrPlot, width = 12, height = 9)
 
@@ -58,7 +58,7 @@ niceNames <- data.frame(metric = metric, niceName = niceName, stringsAsFactors =
 plotData <- merge(plotData, niceNames, by = 'metric')
 
 countryData <- ggplot(plotData , aes(x= date, y = value, colour = iso_code)) + geom_point(aes(colour = iso_code)) + geom_line(aes(colour = iso_code)) + facet_grid(rows=vars(niceName), scales = 'free') + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) + 
-  ggtitle(paste("Comparing ", paste(unique(plotData$iso_code), collapse = " "), " data ending ", max(plotData$date), sep = ""))
+  ggtitle(paste("Comparing ", paste(unique(plotData$iso_code), collapse = " "), " data ending ", max(plotData$date), sep = "")) +  theme(axis.text.x=element_text(angle=60, hjust=1))
 
 file <- paste('owid/gbr-de.png', sep = '')
 ggsave(file, countryData, width = 12, height = 9)  

@@ -6,7 +6,7 @@ library(tidyverse)
 library(tidyquant)
 source('common.R')
 
-data <- read.csv('apple/applemobilitytrends-2021-05-28.csv', header = T, stringsAsFactors = F)
+data <- read.csv('apple/applemobilitytrends-2021-06-09.csv', header = T, stringsAsFactors = F)
 
 # turn this into a sane data format
 data <- data %>% pivot_longer(-(geo_type:country))
@@ -31,7 +31,7 @@ data.uk.smooth <- add_lockdown(data.uk.smooth)
 
 file <- paste('apple/uk.png', sep = '')
 plotData_t <- data.uk.smooth
-gp <- ggplot(plotData_t , aes(x=dt, y = value)) + geom_point(aes(colour=lockdown)) + geom_line(aes(colour=lockdown))  + facet_grid(rows = vars(transportation_type),scales = 'free') + ggtitle(paste("Apple UK movement data until ", max(plotData_t$dt), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15)
+gp <- ggplot(plotData_t , aes(x=dt, y = value)) + geom_point(aes(colour=lockdown)) + geom_line(aes(colour=lockdown))  + facet_grid(rows = vars(transportation_type),scales = 'free') + ggtitle(paste("Apple UK movement data until ", max(plotData_t$dt), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) +  theme(axis.text.x=element_text(angle=60, hjust=1))
     
 ggsave(file, gp, width = 15, height = 9)
 
@@ -48,7 +48,7 @@ data.comp.smooth <- data.comp %>% group_by(region,transportation_type) %>%
 
 file <- paste('apple/uk_de.png', sep = '')
 plotData_t <- data.comp.smooth
-gp <- ggplot(plotData_t , aes(x=dt, y = value)) + geom_point(aes(colour=region)) + geom_line(aes(colour=region))  + facet_grid(rows = vars(transportation_type),scales = 'free') + ggtitle(paste("Apple UK & DE movement data until ", max(plotData_t$dt), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15)
+gp <- ggplot(plotData_t , aes(x=dt, y = value)) + geom_point(aes(colour=region)) + geom_line(aes(colour=region))  + facet_grid(rows = vars(transportation_type),scales = 'free') + ggtitle(paste("Apple UK & DE movement data until ", max(plotData_t$dt), sep = '')) + scale_x_date(date_breaks = "months" , date_labels = "%b-%y") + theme_bw(base_size = 15) +  theme(axis.text.x=element_text(angle=60, hjust=1))
 
 ggsave(file, gp, width = 15, height = 9)
 
