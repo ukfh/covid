@@ -18,10 +18,11 @@ add_lockdown <- function(data.df)
                                                      dt >= as.Date('2021-03-29') & dt <= as.Date('2021-04-11')  ~ 'Step 1 pt.2',
                                                      dt >= as.Date('2021-04-12') & dt <= as.Date('2021-05-16')  ~ 'Step 2',
                                                      dt >= as.Date('2021-05-17') & dt <= as.Date('2021-06-20')  ~ 'Step 3',
-                                                     dt >= as.Date('2021-06-21')                                ~ 'End of the Pandemic'))
+                                                     dt >= as.Date('2021-06-21') & dt <= as.Date('2021-07-18')  ~ 'Step 3.5',
+                                                     dt >= as.Date('2021-07-19')                                ~ 'End of the Pandemic'))
   
                                
   
-  data.df$lockdown <- factor(data.df$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0','Step 1 pt.1','Step 1 pt.2','Step 2','Step 3','End of the Pandemic'))
+  data.df$lockdown <- factor(data.df$lockdown, levels = c("Before","1st Lockdown","New normal","Lockdown 2.0", 'Newer normal','Tier 3','Tier 4 part 1','X-mas bauble','Tier 4 part 2','Lockdown 3.0','Step 1 pt.1','Step 1 pt.2','Step 2','Step 3','Step 3.5','End of the Pandemic'))
   return(data.df)
 }
