@@ -99,7 +99,7 @@ weeksFuture <- 1.5
 
 # the hospital case and deaths lag behind and need different windows at the moment.
 # this needs to be adjusted later
-baseWindow <- data.frame(key = c('new_cases', 'hospital_cases', 'deaths'), lag = c(4, 3, 2), stringsAsFactors = F)
+baseWindow <- data.frame(key = c('new_cases', 'hospital_cases', 'deaths'), lag = c(3, 3, 2), stringsAsFactors = F)
 maxKey <- merge(maxKey, baseWindow, by = 'key')
 predStartEndBase <- maxKey %>% mutate(startDate = maxDate - lag * 7 ,
                                       predDate =  maxDate + round(weeksFuture * 7))
