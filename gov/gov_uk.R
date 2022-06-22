@@ -17,7 +17,8 @@ hospitalCases <- data.frame(dt = as.Date(data$data$date), cases = data$data$hosp
 
 # new cases ----
 
-endpoint <- 'https://api.coronavirus.data.gov.uk/v1/data?filters=areaName=United%2520Kingdom;areaType=overview&structure={"date":"date","newCases":"newCasesByPublishDate"}'
+#endpoint <- 'https://api.coronavirus.data.gov.uk/v1/data?filters=areaName=United%2520Kingdom;areaType=overview&structure={"date":"date","newCases":"newCasesByPublishDate"}'
+endpoint <- 'https://api.coronavirus.data.gov.uk/v1/data?filters=areaName=England;areaType=nation&structure={"date":"date","newCases":"newCasesByPublishDate"}'
 
 response <- GET(url = endpoint)
 

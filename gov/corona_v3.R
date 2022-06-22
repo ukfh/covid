@@ -73,8 +73,8 @@ corona_long <- add_lockdown(corona_long)
 plotData <- corona_long %>% filter(key  %in% c("deaths","hospital_cases","new_cases" ) & dt >= Sys.Date() - 12 * 7 ) #as.Date('2020-04-01'))
 
 # order the plot
-niceName <- factor(c("New cases","Hospital cases","Deaths"),
-                   levels =c("New cases","Hospital cases","Deaths"))
+niceName <- factor(c("New cases\n in England","Hospital cases","Deaths"),
+                   levels =c("New cases\n in England","Hospital cases","Deaths"))
 metric  <- factor(c("new_cases","hospital_cases","deaths") ,
                   levels = c("new_cases","hospital_cases","deaths" ))
 niceNames <- data.frame(key = metric, niceName = niceName, stringsAsFactors = T)
