@@ -7,7 +7,7 @@ cd $DIR
 /usr/local/bin/Rscript owid/ourworldindata.R 
 
 git add owid/*.png
-git commit -m "plot update on $DATE"
+git commit -m "OWID plot update on $DATE"
 git push origin main
 
 exit

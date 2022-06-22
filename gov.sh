@@ -7,7 +7,7 @@ cd $DIR
 /usr/local/bin/Rscript gov/corona_v3.R 
 
 git add gov/uk_covid_l*
-git commit -m "plot update on $DATE"
+git commit -m "UK gov plot update on $DATE"
 git push origin main
 
 exit
