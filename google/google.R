@@ -17,7 +17,7 @@ google.org <- google.org %>% mutate(date = as.Date(date)) # , dow = weekdays(dat
 google.long <- google.org %>% pivot_longer(retail_and_recreation_percent_change_from_baseline:residential_percent_change_from_baseline)
 
 # fish out the UK wide data
-plotData <- google.long %>% filter( country_region_code == 'GB' & sub_region_1 =='')
+plotData <- google.long %>% filter( country_region_code == 'GB' & is.na(sub_region_1))
 
 
 uk <- plotData %>%  select (-census_fips_code,-metro_area,-iso_3166_2_code, -sub_region_2, -country_region,-country_region_code, -sub_region_1) %>%
@@ -71,7 +71,7 @@ gp <- ggplot(uk , aes(x=dt, y = value)) + geom_point(aes(colour=lockdown)) +
 
  
 # compare UK and Germany
- plotData <- google.long %>% filter( country_region_code %in% c('GB','DE') & sub_region_1 =='')
+ plotData <- google.long %>% filter( country_region_code %in% c('GB','DE') & is.na(sub_region_1))
  
  
  plotData <- plotData %>%  select (-census_fips_code,-metro_area,-iso_3166_2_code, -sub_region_2, -country_region, -sub_region_1) %>%
