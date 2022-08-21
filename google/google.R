@@ -4,11 +4,11 @@ library(RCurl)
 options(bitmapType='cairo')
 source('common.R')
 
-google.org <- getURL('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', timeout = 2000)
+#google.org <- getURL('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', timeout = 2000)
 #read.csv(, header = T, stringsAsFactors = F)
 
 #google.org <- read.csv('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', header = T, stringsAsFactors = F)
-google.org <- read.csv('google/Global_Mobility_Report.csv',header = T, stringsAsFactors = F)
+google.org <- read.csv('google/Global_Mobility_Report.csv.1',header = T, stringsAsFactors = F)
 # save data ----
 #write.csv(google.org, file = paste('google/', Sys.Date(), '_Global_Mobility_Report.csv', sep = ''))
 #google.org <- read.csv('google/2021-02-22_Global_Mobility_Report.csv', header = T, stringsAsFactors = F)
