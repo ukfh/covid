@@ -4,7 +4,7 @@ library(RCurl)
 options(bitmapType='cairo')
 source('common.R')
 
-#google.org <- getURL('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', timeout = 2000)
+google.org <- getURL('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', timeout = 2000)
 #read.csv(, header = T, stringsAsFactors = F)
 
 #google.org <- read.csv('https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv', header = T, stringsAsFactors = F)
